@@ -4,7 +4,7 @@ using namespace std;
 int prims(vector<vector<pair<int, int>>>& adj, int s) 
 {
     int n = adj.size();
-    vector<bool> vis(n, false);
+    vector<bool> vis(n+1, false);
     int cnt = 0;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     int ans = 0;
@@ -20,10 +20,12 @@ int prims(vector<vector<pair<int, int>>>& adj, int s)
         ans += wt;
         cnt++;
         vis[u] = true;
-        for (auto i : adj[u]) {
+        for (auto i : adj[u]) 
+        {
             int v = i.first;
             int w = i.second;
-            if (!vis[v]) {
+            if (!vis[v]) 
+            {
                 pq.push({w, v});
             }
         }
