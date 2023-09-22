@@ -9,11 +9,12 @@ int prims(vector<vector<pair<int, int>>>& adj, int s)
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     int ans = 0;
     pq.push({0, s});
-    while (!pq.empty() && cnt != n) {
+    while (!pq.empty() && cnt != n) 
+    {
         int wt = pq.top().first;
         int u = pq.top().second;
         pq.pop();
-        if (vis[u]) 
+        if (vis[u])
         {
             continue;
         }
@@ -55,7 +56,7 @@ int main() {
 
 6 9
 1 2 2
-1 4 3
+1 4 1
 1 5 4
 2 6 7
 2 3 3
