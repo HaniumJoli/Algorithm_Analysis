@@ -1,32 +1,28 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int prims(vector<vector<pair<int, int>>>& adj, int s) 
-{
+int prims(vector<vector<pair<int, int>>> adj, int s,int from,int to,int weight) {
     int n = adj.size();
     vector<bool> vis(n+1, false);
     int cnt = 0;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    int ans = 0;
-    pq.push({0, s});
-    while (!pq.empty() && cnt != n) 
-    {
+    int ans = weight;
+    pq.push({0, from});
+    pq.push({0, to});
+    while (!pq.empty() && cnt != n) {
         int wt = pq.top().first;
         int u = pq.top().second;
         pq.pop();
-        if (vis[u])
-        {
+        if (vis[u]) {
             continue;
         }
         ans += wt;
         cnt++;
         vis[u] = true;
-        for (auto i : adj[u]) 
-        {
+        for (auto i : adj[u]) {
             int v = i.first;
             int w = i.second;
-            if (!vis[v]) 
-            {
+            if (!vis[v]) {
                 pq.push({w, v});
             }
         }
@@ -48,23 +44,27 @@ int main() {
 
     int s;
     cin >> s;
-    int ans = prims(adj, s);
+    int from,to,weight;
+    cin>>from>>to>>weight;
+    int ans = prims(adj, s,from,to,weight);
     cout << ans << endl;
+    // for(auto x:adj)
+    // {
+    //     for(auto y: x) cout<<y.first<<' '<<y.second<<"    ";
+    //     cout<<endl;
+    // }
     return 0;
 }
 /*
-
-6 9
-1 2 2
-1 4 1
-1 5 4
-2 6 7
+5 7
+0 1 2
+0 2 4
+1 2 1
+1 3 7
 2 3 3
-2 4 3
-4 5 9
-3 4 5
-3 6 8
-1
-3 6 8
+2 4 5
+3 4 6
+0
+3 4 6
 */
-//ans will be 17
+//ans will be 12
