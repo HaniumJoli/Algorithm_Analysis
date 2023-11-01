@@ -76,7 +76,7 @@ int findMinCost(vector<vector<int>>costMatrix)
 
     Node root(-1,-1,assigned,0,-1);
     root.pathCost = root.promisingCost = 0;
-    root.workerID = -1;
+    //root.workerID = -1;
     nodes.push_back(root);
     pq.push(root);
 
@@ -85,7 +85,7 @@ int findMinCost(vector<vector<int>>costMatrix)
         Node u = pq.top();
         pq.pop();
 
-        int i = u.workerID+1;
+        int i = u.workerID+1; //assign job to the next worker
 
         //cout<<i<<endl;
         //every worker has been assigned.
@@ -95,7 +95,7 @@ int findMinCost(vector<vector<int>>costMatrix)
             return u.pathCost;
         }
 
-        for(int j = 0; j<N; j++)
+        for(int j = 0; j<N; j++)  //traverse jobs to see which job can be assigned
         {
             if(!u.assigned[j])
             {
